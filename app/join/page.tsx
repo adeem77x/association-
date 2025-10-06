@@ -3,8 +3,36 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { CheckCircle } from "lucide-react"
+import { FormEvent } from "react"
 
 export default function JoinPage() {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.currentTarget
+
+    const data = {
+      firstName: (form.firstName as HTMLInputElement).value,
+      lastName: (form.lastName as HTMLInputElement).value,
+      email: (form.email as HTMLInputElement).value,
+      phone: (form.phone as HTMLInputElement).value,
+      age: Number((form.age as HTMLInputElement).value),
+      education: (form.education as HTMLInputElement).value,
+      program: (form.program as HTMLSelectElement).value,
+      motivation: (form.motivation as HTMLTextAreaElement).value,
+      experience: (form.experience as HTMLTextAreaElement).value,
+      terms: (form.terms as HTMLInputElement).checked,
+    }
+
+    const res = await fetch("/api/join", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+
+    if (res.ok) alert("Candidature envoyée !")
+    else alert("Erreur lors de l’envoi")
+  }
+
   return (
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
@@ -13,8 +41,7 @@ export default function JoinPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance">Rejoignez-nous</h1>
             <p className="text-xl text-muted-foreground text-pretty">
-              Commencez votre parcours vers l'excellence en leadership. Rejoignez une communauté de jeunes leaders
-              passionnés et engagés.
+              Commencez votre parcours vers l'excellence en leadership. Rejoignez une communauté de jeunes leaders passionnés.
             </p>
           </div>
         </div>
@@ -52,59 +79,38 @@ export default function JoinPage() {
                 <p className="text-center text-muted-foreground mb-8">
                   Remplissez ce formulaire pour commencer votre parcours avec nous
                 </p>
-                <form className="space-y-6">
+
+                {/* Formulaire */}
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                        Prénom *
-                      </label>
+                      <label htmlFor="firstName">Prénom *</label>
                       <Input id="firstName" placeholder="Votre prénom" required />
                     </div>
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                        Nom *
-                      </label>
+                      <label htmlFor="lastName">Nom *</label>
                       <Input id="lastName" placeholder="Votre nom" required />
                     </div>
                   </div>
-
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email *
-                    </label>
+                    <label htmlFor="email">Email *</label>
                     <Input id="email" type="email" placeholder="votre.email@exemple.com" required />
                   </div>
-
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                      Téléphone *
-                    </label>
+                    <label htmlFor="phone">Téléphone *</label>
                     <Input id="phone" type="tel" placeholder="+33 1 23 45 67 89" required />
                   </div>
-
                   <div>
-                    <label htmlFor="age" className="block text-sm font-medium mb-2">
-                      Âge *
-                    </label>
+                    <label htmlFor="age">Âge *</label>
                     <Input id="age" type="number" placeholder="25" required />
                   </div>
-
                   <div>
-                    <label htmlFor="education" className="block text-sm font-medium mb-2">
-                      Niveau d'études *
-                    </label>
+                    <label htmlFor="education">Niveau d'études *</label>
                     <Input id="education" placeholder="Ex: Master en Administration" required />
                   </div>
-
                   <div>
-                    <label htmlFor="program" className="block text-sm font-medium mb-2">
-                      Programme souhaité *
-                    </label>
-                    <select
-                      id="program"
-                      className="w-full px-4 py-2 rounded-lg border border-input bg-background"
-                      required
-                    >
+                    <label htmlFor="program">Programme souhaité *</label>
+                    <select id="program" className="w-full px-4 py-2 rounded-lg border border-input bg-background" required>
                       <option value="">Sélectionnez un programme</option>
                       <option value="leadership">Développement du Leadership</option>
                       <option value="community">Service Communautaire</option>
@@ -114,41 +120,19 @@ export default function JoinPage() {
                       <option value="training">Formation Continue</option>
                     </select>
                   </div>
-
                   <div>
-                    <label htmlFor="motivation" className="block text-sm font-medium mb-2">
-                      Lettre de motivation *
-                    </label>
-                    <Textarea
-                      id="motivation"
-                      placeholder="Expliquez pourquoi vous souhaitez rejoindre l'Association des Leaders de l'Excellence et quels sont vos objectifs..."
-                      rows={8}
-                      required
-                    />
+                    <label htmlFor="motivation">Lettre de motivation *</label>
+                    <Textarea id="motivation" rows={8} required placeholder="Expliquez pourquoi..." />
                   </div>
-
                   <div>
-                    <label htmlFor="experience" className="block text-sm font-medium mb-2">
-                      Expérience en leadership (optionnel)
-                    </label>
-                    <Textarea
-                      id="experience"
-                      placeholder="Décrivez vos expériences passées en leadership, bénévolat ou projets communautaires..."
-                      rows={6}
-                    />
+                    <label htmlFor="experience">Expérience en leadership (optionnel)</label>
+                    <Textarea id="experience" rows={6} placeholder="Décrivez vos expériences..." />
                   </div>
-
                   <div className="flex items-start gap-3">
-                    <input type="checkbox" id="terms" className="mt-1" required />
-                    <label htmlFor="terms" className="text-sm text-muted-foreground">
-                      J'accepte les conditions d'utilisation et la politique de confidentialité de l'Association des
-                      Leaders de l'Excellence
-                    </label>
+                    <input type="checkbox" id="terms" required />
+                    <label htmlFor="terms" className="text-sm text-muted-foreground">J'accepte les conditions</label>
                   </div>
-
-                  <Button type="submit" size="lg" className="w-full">
-                    Soumettre ma candidature
-                  </Button>
+                  <Button type="submit" size="lg" className="w-full">Soumettre ma candidature</Button>
                 </form>
               </CardContent>
             </Card>
