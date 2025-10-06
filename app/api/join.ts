@@ -13,11 +13,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const { error } = await supabase.from("form_submissions").insert([
     {
-      formType: "contact",
+      formType: "rejoindre",
       ...data,
     },
   ])
 
   if (error) return res.status(500).json({ error: error.message })
-  res.status(200).json({ message: "Message enregistré avec succès" })
+  res.status(200).json({ message: "Candidature enregistrée avec succès" })
 }
