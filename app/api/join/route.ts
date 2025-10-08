@@ -1,7 +1,8 @@
 const nodemailer = require("nodemailer");
-
-export async function POST(req: Request) {
+import { NextRequest, NextResponse } from "next/server";
+export async function POST(req: NextRequest) {
   try {
+    const data = await req.json();
     const {
       firstName,
       lastName,
@@ -12,10 +13,13 @@ export async function POST(req: Request) {
       program,
       motivation,
       experience,
-    } = await req.json();
+    } = data;
 
     if (!firstName || !lastName || !email || !motivation) {
-      return Response.json({ message: "Champs requis manquants." }, { status: 400 });
+      return NextResponse.json(
+        { message: "Champs requis manquants." },
+        { status: 400 }
+      );
     }
 
     const transporter = nodemailer.createTransport({
@@ -63,9 +67,12 @@ ${experience || "Aucune"}
     };
 
     await transporter.sendMail(mailOptions);
-    return Response.json({ message: "Votre candidature a été soumise avec succès !" }, { status: 200 });
+    return NextResponse.json({ message: "Votre candidature a été soumise avec succès !" });
   } catch (error) {
     console.error("Erreur envoi mail join:", error);
-    return Response.json({ message: "Erreur serveur : impossible d'envoyer l'email." }, { status: 500 });
+    return NextResponse.json(
+      { message: "Erreur serveur : impossible d'envoyer l'email." },
+      { status: 500 }
+    );
   }
 }

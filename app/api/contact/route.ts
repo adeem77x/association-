@@ -1,13 +1,19 @@
 const nodemailer = require("nodemailer");
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
-    const { firstName, lastName, email, phone, subject, message } = await req.json();
+    const data = await req.json();
+    const { firstName, lastName, email, phone, subject, message } = data;
 
     if (!firstName || !lastName || !email || !message) {
-      return Response.json({ message: "Champs requis manquants." }, { status: 400 });
+      return NextResponse.json(
+        { message: "Champs requis manquants." },
+        { status: 400 }
+      );
     }
 
+    // Créer le transporteur nodemailer
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -16,6 +22,7 @@ export async function POST(req: Request) {
       },
     });
 
+    // Contenu du mail
     const mailOptions = {
       from: `"${firstName} ${lastName}" <${email}>`,
       to: process.env.EMAIL_RECEIVER,
@@ -41,10 +48,12 @@ ${message}
     };
 
     await transporter.sendMail(mailOptions);
-
-    return Response.json({ message: "Merci pour votre message !" }, { status: 200 });
+    return NextResponse.json({ message: "Merci pour votre message !" });
   } catch (error) {
     console.error("Erreur envoi mail contact:", error);
-    return Response.json({ message: "Erreur serveur : impossible d'envoyer l'email." }, { status: 500 });
+    return NextResponse.json(
+      { message: "Erreur serveur : impossible d'envoyer l'email." },
+      { status: 500 }
+    );
   }
 }
