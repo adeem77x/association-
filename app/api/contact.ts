@@ -1,23 +1,30 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import { createClient } from "@supabase/supabase-js"
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+import { supabase } from "@/lib/supabase"
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return res.status(405).json({ error: "Méthode non autorisée" })
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Méthode non autorisée" })
+  }
 
-  const data = req.body
+  try {
+    const data = req.body
 
-  const { error } = await supabase.from("form_submissions").insert([
-    {
-      formType: "contact",
-      ...data,
-    },
-  ])
+    const { error } = await supabase.from("form_submissions").insert([
+      {
+        formType: "contact",
+        ...data,
+        created_at: new Date().toISOString()
+      },
+    ])
 
-  if (error) return res.status(500).json({ error: error.message })
-  res.status(200).json({ message: "Message enregistré avec succès" })
+    if (error) {
+      console.error('Erreur Supabase:', error)
+      return res.status(500).json({ error: error.message })
+    }
+    
+    return res.status(200).json({ message: "Message enregistré avec succès" })
+  } catch (error) {
+    console.error('Erreur API:', error)
+    return res.status(500).json({ error: "Erreur interne du serveur" })
+  }
 }
