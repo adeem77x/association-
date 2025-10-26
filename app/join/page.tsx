@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import FadeInSection from "@/components/FadeInSection";
 
 export default function JoinPage() {
   const [formData, setFormData] = useState({
@@ -72,7 +73,7 @@ export default function JoinPage() {
   return (
     <main className="min-h-screen pt-16">
       {/* Hero & Benefits : garde ta version existante */}
-
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto">
@@ -126,9 +127,11 @@ export default function JoinPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Process etc. (garde ta version) */}
        {/* Process */}
+      <FadeInSection>
       <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-16">Processus de candidature</h2>
@@ -150,6 +153,7 @@ export default function JoinPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
     </main>
   );
 }

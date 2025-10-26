@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Users, Heart, Lightbulb, Briefcase, Globe, BookOpen } from "lucide-react"
+import FadeInSection from "@/components/FadeInSection"
 
 export default function ProgramsPage() {
   const programs = [
@@ -84,6 +85,7 @@ export default function ProgramsPage() {
   return (
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
@@ -94,8 +96,10 @@ export default function ProgramsPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Programs Grid */}
+      <FadeInSection>
       <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -129,8 +133,10 @@ export default function ProgramsPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Process Section */}
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Comment ça marche</h2>
@@ -166,8 +172,10 @@ export default function ProgramsPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* CTA */}
+      <FadeInSection>
       <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Prêt à commencer ?</h2>
@@ -179,6 +187,7 @@ export default function ProgramsPage() {
           </Button>
         </div>
       </section>
+      </FadeInSection>
     </main>
   )
 }
