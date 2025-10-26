@@ -5,9 +5,11 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
+import { usePathname } from "next/navigation"  // ✅ ajout important
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname() // ✅ récupère la page active
 
   const links = [
     { href: "/", label: "Accueil" },
@@ -28,21 +30,29 @@ export function Navigation() {
             <span className="text-2xl font-bold tracking-tight text-black">ALEOA</span>
           </Link>
 
-          {/* Desktop Navigation - Centered */}
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-center flex-1 gap-10">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-all duration-300 relative group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
-              </Link>
-            ))}
+            {links.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-semibold transition-all duration-300 relative group ${
+                    isActive ? "text-blue-600" : "text-gray-700 hover:text-blue-600"
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+              )
+            })}
           </div>
 
-          {/* CTA Button - Blue button */}
           <div className="hidden lg:block">
             <Button
               asChild
@@ -53,7 +63,7 @@ export function Navigation() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu toggle */}
           <button
             className="lg:hidden text-black hover:text-blue-600 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
@@ -66,16 +76,21 @@ export function Navigation() {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="lg:hidden py-6 space-y-6 border-t border-gray-200">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block text-base font-semibold text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {links.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`block text-base font-semibold transition-colors ${
+                    isActive ? "text-blue-600" : "text-gray-700 hover:text-blue-600"
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
             <Button asChild className="w-full bg-blue-600 text-white font-bold hover:bg-blue-700 shadow-lg">
               <Link href="/join">Rejoignez-nous</Link>
             </Button>

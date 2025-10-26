@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
+import FadeInSection from "@/components/FadeInSection";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -54,6 +55,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen pt-16">
       {/* Hero */}
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
@@ -64,8 +66,10 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Contact Form & Info */}
+      <FadeInSection>
       <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -150,8 +154,10 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
     {/* FAQ Section reste identique */}
+    <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-16">Questions fréquentes</h2>
@@ -172,6 +178,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
     </main>
   );
 }

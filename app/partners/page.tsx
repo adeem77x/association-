@@ -2,11 +2,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Building2, Handshake, Globe } from "lucide-react"
+import FadeInSection from "@/components/FadeInSection"
 
 export default function PartnersPage() {
   return (
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
@@ -17,8 +19,10 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Partner Types */}
+      <FadeInSection>
       <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -51,8 +55,10 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Partners Grid */}
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-16">Nos partenaires de confiance</h2>
@@ -69,8 +75,10 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Partnership Benefits */}
+      <FadeInSection>
       <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Pourquoi devenir partenaire</h2>
@@ -105,8 +113,10 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* CTA */}
+      <FadeInSection>
       <section className="py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Devenez partenaire</h2>
@@ -118,6 +128,7 @@ export default function PartnersPage() {
           </Button>
         </div>
       </section>
+      </FadeInSection>
     </main>
   )
 }

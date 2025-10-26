@@ -1,3 +1,4 @@
+import FadeInSection from "@/components/FadeInSection"
 import { Card, CardContent } from "@/components/ui/card"
 import { Users, Award, Briefcase } from "lucide-react"
 
@@ -44,6 +45,7 @@ export default function MembersPage() {
   return (
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
@@ -55,8 +57,10 @@ export default function MembersPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Stats */}
+      <FadeInSection>
       <section className="py-16">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -76,8 +80,10 @@ export default function MembersPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Members Grid */}
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-16">Membres en vedette</h2>
@@ -102,8 +108,10 @@ export default function MembersPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Community Benefits */}
+      <FadeInSection>
       <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Avantages de la communauté</h2>
@@ -145,6 +153,7 @@ export default function MembersPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
     </main>
   )
 }

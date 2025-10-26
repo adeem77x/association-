@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Calendar, User, ArrowRight } from "lucide-react"
+import FadeInSection from "@/components/FadeInSection"
 
 export default function BlogPage() {
   const posts = [
@@ -60,6 +61,7 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
@@ -70,8 +72,10 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Featured Post */}
+      <FadeInSection>
       <section className="py-16">
         <div className="container mx-auto px-4 lg:px-8">
           <Card className="border-none shadow-xl overflow-hidden">
@@ -109,8 +113,10 @@ export default function BlogPage() {
           </Card>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Blog Posts Grid */}
+      <FadeInSection>
       <section className="py-24 bg-card">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl font-bold mb-12">Derniers articles</h2>
@@ -155,8 +161,10 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Newsletter */}
+      <FadeInSection>
       <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <Card className="border-none shadow-xl bg-primary text-primary-foreground">
@@ -180,6 +188,7 @@ export default function BlogPage() {
           </Card>
         </div>
       </section>
+      </FadeInSection>
     </main>
   )
 }

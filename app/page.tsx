@@ -2,21 +2,25 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, Users, Heart, Lightbulb } from "lucide-react"
+import FadeInSection from "@/components/FadeInSection"
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-cyan-600">
+      
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: "url(/abstract-geometric-pattern.png)",
+            backgroundImage: "url(/hero.png)",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            opacity: 0.1,
+            filter: "brightness(30%)",
+            opacity: 0.8,
           }}
         />
+
         <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance leading-tight text-white font-[family-name:var(--font-montserrat)]">
             Diriger avec Excellence
@@ -45,6 +49,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
+      <FadeInSection>
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-black font-[family-name:var(--font-montserrat)]">
@@ -76,8 +81,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Mission Section */}
+      <FadeInSection>
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -112,8 +119,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Impact Areas */}
+      <FadeInSection>
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-balance text-black font-[family-name:var(--font-montserrat)]">
@@ -178,8 +187,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Gallery Section */}
+      <FadeInSection>
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-balance text-black font-[family-name:var(--font-montserrat)]">
@@ -211,8 +222,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Testimonials */}
+      <FadeInSection>
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-balance text-black font-[family-name:var(--font-montserrat)]">
@@ -260,8 +273,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
 
       {/* CTA Section */}
+      <FadeInSection>
       <section className="py-24 bg-black">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-[family-name:var(--font-montserrat)]">
@@ -286,6 +301,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </FadeInSection>
     </main>
   )
 }
