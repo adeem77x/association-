@@ -25,10 +25,15 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "ALEOA - Association des Leaders de l'Excellence",
+  icons: {
+    icon: "/aleoa-logo.jpg", 
+  },
   description:
     "Donner aux jeunes leaders les moyens d'instaurer un changement positif dans leurs communautés et au-delà",
   generator: "v0.app",
 }
+
+
 
 export default function RootLayout({
   children,
